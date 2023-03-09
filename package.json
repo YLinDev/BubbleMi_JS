@@ -1,0 +1,37 @@
+{
+  "name": "js_project",
+  "version": "1.0.0",
+  "description": "## Background",
+  "main": "index.js",
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "core-js": "^3.29.0",
+    "css-loader": "^6.7.3",
+    "mini-css-extract-plugin": "^2.7.3",
+    "regenerator-runtime": "^0.13.11",
+    "sass": "^1.58.3",
+    "sass-loader": "^13.2.0",
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YLinDev/BubbleMi_JS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YLinDev/BubbleMi_JS/issues"
+  },
+  "homepage": "https://github.com/YLinDev/BubbleMi_JS#readme"
+}
