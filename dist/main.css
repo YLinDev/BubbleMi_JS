@@ -1,3 +1,26 @@
-#main>h1{border:4px solid purple;padding:20px}#main{color:purple}svg{display:flex;flex-wrap:wrap}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+#main > h1 {
+  border: 4px solid purple;
+  padding: 20px;
+}
 
-/*# sourceMappingURL=main.css.map*/
+#main {
+  color: purple;
+}
+
+svg {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #202733;
+}
+
+text {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  fill: white;
+  text-shadow: -0.5px -0.5px 0 black, 0.5px -0.5px 0 black, -0.5px 0.5px 0 black, 0.5px 0.5px 0 black;
+  font-weight: 700;
+  font-style: italic;
+}

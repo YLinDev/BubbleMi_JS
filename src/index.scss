@@ -7,5 +7,17 @@
 svg {
     display:flex;
     flex-wrap: wrap;
+    background-color: #202733;
+    // background-color:  #b5b7ba;
     
+}
+
+text {
+    -webkit-touch-callout : none;
+    -webkit-user-select: none;
+    fill: white;
+    text-shadow: -0.5px -0.5px 0 black, 0.5px -0.5px 0 black, -0.5px 0.5px 0 black, 0.5px 0.5px 0 black;
+    // text-shadow: -0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white;
+    font-weight: 700;
+    font-style: italic;
 }
