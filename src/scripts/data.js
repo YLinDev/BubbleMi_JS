@@ -12,7 +12,7 @@ export function bubbleUp(){
         .attr("preserveAspectRatio", "xMidYMid meet") //dynamic width & height
 
         // Read data
-        d3.json("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false").then( function(data) {
+        d3.json("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false").then( function(data) {
             
         // add change properties to each coin whether they are up or down based on price_change_percentage_24h
         data.map((el) => {
@@ -24,11 +24,11 @@ export function bubbleUp(){
         })
         
         //huobi_btc weird data fetch correction
-        data.map((el) => {
-            if (el.id === "huobi-btc") {
-                el.price_change_percentage_24h = 0
-            }
-        })
+        // data.map((el) => {
+        //     if (el.id === "huobi-btc") {
+        //         el.price_change_percentage_24h = 0
+        //     }
+        // })
 
         console.log(data)
         
@@ -82,7 +82,7 @@ export function bubbleUp(){
         // Size scale for coin/bubbles based on top/worst performing coin
         const size = d3.scaleLinear()
             .domain([0, max()]) //use max of up/down to scale bubble size
-            .range([7, 55])  // circle will be between 7 and 55 px wide
+            .range([7, 50])  // circle will be between 7 and 55 px wide
         
         const textAlign = d3.scaleLinear()
             .domain([0, max()]) //use max of up/down to textAlignment px
@@ -95,7 +95,7 @@ export function bubbleUp(){
         // How to stack bubbles if they are up/down
         const y = d3.scaleOrdinal()
             .domain(["up", "down"])
-            .range([0, 100])
+            .range([0, 1000])
         
         //-------------------------------------
         // create a tooltip
@@ -151,8 +151,10 @@ export function bubbleUp(){
             .data(data)
             .enter()
             .append("text")
-            .text(d => {if (d.price_change_percentage_24h) {
+            .text(d => {if (d.price_change_percentage_24h < 0) {
                     return `${d.price_change_percentage_24h.toFixed(1)}%`
+                } else if (d.price_change_percentage_24h > 0) {
+                    return `+${d.price_change_percentage_24h.toFixed(1)}%`
                 } else {
                     return "0%"
                 }
@@ -193,19 +195,19 @@ export function bubbleUp(){
 
         // Features of the forces applied to the nodes:
         const simulation = d3.forceSimulation()
-        .force("x", d3.forceX().strength(0.1).x( height / 2 )) //strength of bubbles if move horizontally
-        .force("y", d3.forceY().strength(2).y( d => y(d.change) )) //strength of bubbles if move vertically, greens will float on top 
-        .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-        .force("charge", d3.forceManyBody().strength(.01)) // Nodes are attracted one each other of value is > 0
-        .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(Math.abs(d.price_change_percentage_24h))+8) }).iterations(1)) // Force that avoids circle overlapping
-        
+            .force("x", d3.forceX().strength(0.3).x( height / 2 )) //strength of bubbles if move horizontally
+            .force("y", d3.forceY().strength(2).y( d => y(d.change) )) //strength of bubbles if move vertically, greens will float on top 
+            .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+            .force("charge", d3.forceManyBody().strength(.00000000001)) // Nodes are attracted one each other of value is > 0
+            .force("collide", d3.forceCollide().strength(.7).radius(function(d){ return (size(Math.abs(d.price_change_percentage_24h))+5) }).iterations(5)) // Force that avoids circle overlapping
+            
         // Apply these forces to the nodes and update their positions.
         // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
         simulation
             .nodes(data)
                 .on("tick", ticked);
 
-        // What happens when a circle is dragged?
+        // Drag Logic
         function dragstarted(event, d) {
             if (!event.active) simulation.alphaTarget(.01).restart();
             d.fx = d.x;
