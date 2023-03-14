@@ -2,13 +2,13 @@ export function bubbleUp(){
 
     // set the dimensions and margins of the graph
     const width = 900
-    const height = 550
+    const height = 400
 
     // append the svg object to the body of the page
     const svg = d3.select("#my_dataviz")
         .append("svg")
             .attr("id", "chart")
-            .attr("viewBox", "0 -120 900 550") //dynamic width & height
+            .attr("viewBox", "0 0 900 400") //dynamic width & height
             .attr("preserveAspectRatio", "xMidYMid meet") //dynamic width & height
             .style("border-radius", "5px")
 
@@ -25,7 +25,7 @@ export function bubbleUp(){
         // add change properties to each coin whether they are up or down based on price_change_percentage_24h
         data.map((el) => {
             if (Math.abs(el.price_change_percentage_24h) > 100) {
-                el['change'] = "crazy"
+                el['change'] = 'crazy'
             } else if (el.price_change_percentage_24h > 0 && el.price_change_percentage_24h < 100) {
                 el['change'] = 'up'
             } else if (el.price_change_percentage_24h < 0) {
@@ -95,34 +95,34 @@ export function bubbleUp(){
         console.log(top(ups))
         
         const setA = {
-            size: [15, 70, 80],
-            textAlign: [12, 60, 70],
-            fontSize: [5, 15, 17],
-            yCoor: [50, 999, 1000]
+            size: [5, 60],
+            textAlign: [5, 50],
+            fontSize: [5, 15],
+            yCoor: [50, 200]
         }
         
         // Color palette for change up/ down
         const color = d3.scaleOrdinal()
-            .domain(["down", "up", "crazy"])
-            .range(["#fc0303", "#03fc2c", "gold"]); // #046e22
+            .domain(["down", "up"])//, "crazy"
+            .range(["#fc0303", "#03fc2c"]); // #046e22 , "gold"
         
         // Size scale for coin/bubbles based on top/worst performing coin
         const size = d3.scaleLinear()
-            .domain([0, max(), topCrazys(crazys)]) //use max of up/down to scale bubble size
-            .range([15, 70, 80])  // circle will be between 7 and 55 px wide
+            .domain([0, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
+            .range([5, 60])  // circle will be between 7 and 55 px wide , 80
         
         const textAlign = d3.scaleLinear()
-            .domain([0, max(), topCrazys(crazys)]) //use max of up/down to textAlignment px
-            .range([12, 60, 70])  // alignment will be between 1 - 45 additional px
+            .domain([0, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
+            .range([5, 50])  // alignment will be between 1 - 45 additional px , 70
 
         const fontSize = d3.scaleLinear()
-            .domain([0, max(), topCrazys(crazys)]) //added 10 to make it to appear within desire location
-            .range([5, 15, 17])  // circle will be between 7 and 55 px wide
+            .domain([0, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
+            .range([5, 15])  // circle will be between 7 and 55 px wide , 17
 
         // How to stack bubbles if they are up/down
         const y = d3.scaleOrdinal()
             .domain(["up", "down"])
-            .range([50, 999])
+            .range([50, 200])
         
         //-------------------------------------
         // create a tooltip
@@ -137,7 +137,7 @@ export function bubbleUp(){
                 // .style("padding", "5px")
             
             // Three function that change the tooltip when user hover / move / leave a cell
-        const click = function(event, d) {
+        const mouseover = function(event, d) {
             Tooltip
                 .style("opacity", 1)
         }
@@ -165,7 +165,7 @@ export function bubbleUp(){
             .style("fill-opacity", 1)
             .attr("stroke", d => color(d.change))
             .style("stroke-width", 1.5)
-            .on("click", click) // What to do when hovered
+            .on("mouseover", mouseover) // What to do when hovered
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
             .call(d3.drag() // call specific function when circle is dragged
@@ -222,11 +222,11 @@ export function bubbleUp(){
 
         // Features of the forces applied to the nodes:
         const simulation = d3.forceSimulation()
-            .force("x", d3.forceX().strength(0.3).x( height / 2 )) //strength of bubbles if move horizontally
-            .force("y", d3.forceY().strength(2).y( d => y(d.change) )) //strength of bubbles if move vertically, greens will float on top 
+            .force("x", d3.forceX().strength(.1).x( height / 10 )) //strength of bubbles if move horizontally
+            .force("y", d3.forceY().strength(.8).y( d => y(d.change) )) //strength of bubbles if move vertically, greens will float on top 
             .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
             .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-            .force("collide", d3.forceCollide().strength(1).radius(function(d){ return (size(Math.abs(d.price_change_percentage_24h)+3)) }).iterations(5)) // Force that avoids circle overlapping
+            .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(Math.abs(d.price_change_percentage_24h)+3)) }).iterations(5)) // Force that avoids circle overlapping
             
         // Apply these forces to the nodes and update their positions.
         // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
@@ -236,7 +236,7 @@ export function bubbleUp(){
 
         // Drag Logic
         function dragstarted(event, d) {
-            if (!event.active) simulation.alphaTarget(.01).restart();
+            if (!event.active) simulation.alphaTarget(.03).restart();
             d.fx = d.x;
             d.fy = d.y;
         }
@@ -245,7 +245,7 @@ export function bubbleUp(){
             d.fy = event.y;
         }
         function dragended(event, d) {
-            if (!event.active) simulation.alphaTarget(.01);
+            if (!event.active) simulation.alphaTarget(.03);
             d.fx = null;
             d.fy = null;
         }

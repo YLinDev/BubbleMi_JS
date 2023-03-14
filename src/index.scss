@@ -1,6 +1,10 @@
 @import "./styles/coininfo.scss";
 @import "./styles/header.scss";
 
+#my_dataviz {
+    background-color: $backgroundC;
+}
+
 svg {
     display:flex;
     flex-wrap: wrap;
