@@ -1,18 +1,19 @@
 import {bubbleUp, coinFetch} from "./scripts/data";
-// import Example from "./scripts/example";
+import GetData from "./scripts/getData";
 
-document.addEventListener("DOMContentLoaded", () => {
-    // console.log("Hello world!")
-    // const main = document.getElementById("main")
-    // new Example(main); 
+// document.addEventListener("DOMContentLoaded", () => {
 
-})
+    
+// })
 
 async function call(){
-    // const json = await coinFetch();
-    const coinInfo = await bubbleUp(); 
-    // console.log(coinInfo);
-    // console.log(typeof coinInfo);
+    await bubbleUp(); 
 }
 
-call(); 
+call();
+
+window.reload = function() {
+    d3.selectAll('svg').remove();
+    d3.selectAll('.tooltip').remove();
+    call()
+}

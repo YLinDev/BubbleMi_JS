@@ -1,15 +1,17 @@
-@import "./styles/example.scss";
-
-#main {
-    color: $color; // $color was defined in example.scss, which we can use because it's imported before we hit this
-}
+@import "./styles/coininfo.scss";
+@import "./styles/header.scss";
 
 svg {
     display:flex;
     flex-wrap: wrap;
-    background-color: #202733;
+    background-color: $backgroundC;
     // background-color:  #b5b7ba;
     
+}
+
+.node:hover {
+    stroke-width: 5px !important;
+    opacity: 1 !important;
 }
 
 text {
