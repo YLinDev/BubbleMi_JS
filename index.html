@@ -14,10 +14,21 @@
 
   <body>
     <!-- Create a div where the graph will take place -->
+
     <div id="my_dataviz">
+      <div id="main">BubbleMi
+        <a href="https://github.com/YLinDev" target="_blank"><image class="icon" src="./assets/github-icon2.png"></image></a>
+        <a href="https://www.linkedin.com/in/yong-lin-b7142a40/" target="_blank"><image class="icon" src="./assets/linkedin-icon2.png"></a>
+        <br>
+        <label for="numCoins">Top:</label>
+        <select name="numCoins" id="numCoins" onchange="reload()">
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+      </div>
+      <div id="coinInfo"></div>
     </div>
     
-    <div id="main"></div>
   </body>
 
 </html>
