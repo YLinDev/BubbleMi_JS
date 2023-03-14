@@ -8,14 +8,14 @@ $backgroundC: #474a54;
 
 #toolbox {
     color: white; 
-    border: solid;
-    border-color: black;
     text-align: center;
-    border-width: 2px;
-    padding: 5px; 
     bottom: white;
+}
+
+#tooltip {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .icon {
