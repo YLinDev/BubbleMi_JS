@@ -2,13 +2,20 @@ $backgroundC: #474a54;
 
 #main {
     color: white; 
-    background-color: $backgroundC;
-    border: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    padding: 5px; 
     font-size: 40px;
     text-align: center;
+}
+
+#toolbox {
+    color: white; 
+    border: solid;
+    border-color: black;
+    text-align: center;
+    border-width: 2px;
+    padding: 5px; 
+    bottom: white;
+    display: flex;
+    justify-content: center;
 }
 
 .icon {
@@ -17,5 +24,5 @@ $backgroundC: #474a54;
 }
 
 label {
-    font-size: 20px;
+    font-size: 15px;
 }
