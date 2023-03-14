@@ -36,6 +36,35 @@ export function bubbleUp(){
             }
         })
 
+        data.map((el) => { //convert Market Cap to strings for coininfo
+            if (el.market_cap > 1000000000){
+                el['toolMC'] = `$${(el.market_cap/1000000000).toFixed(2)}B`
+            } else {
+                el['toolMC'] = `$${(el.market_cap/1000000).toFixed(2)}M`
+            }
+        })
+
+        data.map((el) => { //convert volume to strings for coininfo
+            if (el.total_volume > 1000000000){
+                el['toolTV'] = `$${(el.total_volume/1000000000).toFixed(2)}B`
+            } else {
+                el['toolTV'] = `$${(el.total_volume/1000000).toFixed(2)}M`
+            }
+        })
+
+        data.map((el) => { //convert % change to strings for coininfo
+            if (el.price_change_percentage_24h > 1){
+                el['toolPC'] = `+${(el.price_change_percentage_24h).toFixed(2)}`
+            } else {
+                el['toolPC'] = `${(el.price_change_percentage_24h).toFixed(2)}`
+            }
+        })
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        })
+
         console.log(data)
         
         // data.forEach(el => console.log(el.price_change_percentage_24h))
@@ -126,26 +155,45 @@ export function bubbleUp(){
         
         //-------------------------------------
         // create a tooltip
-        const Tooltip = d3.select("#my_dataviz")
-            .append("div")
+        const Tooltip = d3.select("#toolbox")
+            .append("ul")
                 .style("opacity", 0)
                 .attr("class", "tooltip")
-                // .style("background-color", "white")
-                // .style("border", "solid")
-                // .style("border-width", "2px")
-                // .style("border-radius", "5px")
-                // .style("padding", "5px")
+                .style("border-color", "white")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px")
             
             // Three function that change the tooltip when user hover / move / leave a cell
+
+        const Sample = d3.select("#toolbox")
+            .append("p")
+                .html("Hover mouse over bubble for more coin information. Click and drag to interact with bubbles.")
+                .style("text-align", "center")
+
         const mouseover = function(event, d) {
             Tooltip
                 .style("opacity", 1)
+                d3.selectAll('p').remove();
         }
         const mousemove = function(event, d) {
             Tooltip
-                .html('<u>' + d.name + '</u>' + "<br>" + d.price_change_percentage_24h.toFixed(1) + '%')
+                .html(
+                    `Name: ${d.name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    Symbol: ${d.symbol.toUpperCase()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    Current Price: ${formatter.format(d.current_price)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    24Hr Change: ${d.toolPC} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    High 24Hr: ${formatter.format(d['high_24h'])} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Low 24Hr: ${formatter.format(d['low_24h'])}`+ 
+                    '<br>' + 
+                    `Rank: ${d.market_cap_rank}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
+                    `Market Cap: ${d.toolMC}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
+                    `24H Volume: ${d.toolTV}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
+                    `ATH: ${formatter.format(d.ath)} on ${d.ath_date.slice(0,10)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
+                    `ATL: ${formatter.format(d.atl)} on ${d.atl_date.slice(0,10)}`)
                 .style("left", (event.x/2+20) + "px")
                 .style("top", (event.y/2-30) + "px")
+                // .style("background-color", d => color(d.change))
         }
         const mouseleave = function(event, d) {
             Tooltip

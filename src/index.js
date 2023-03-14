@@ -16,4 +16,5 @@ window.reload = function() {
     d3.selectAll('svg').remove();
     d3.selectAll('.tooltip').remove();
     call()
+    d3.selectAll('p').remove();
 }
