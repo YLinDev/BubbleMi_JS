@@ -54,9 +54,9 @@ export function bubbleUp(){
 
         data.map((el) => { //convert % change to strings for coininfo
             if (el.price_change_percentage_24h > 1){
-                el['toolPC'] = `+${(el.price_change_percentage_24h).toFixed(2)}`
+                el['toolPC'] = `+${(el.price_change_percentage_24h).toFixed(2)}%`
             } else {
-                el['toolPC'] = `${(el.price_change_percentage_24h).toFixed(2)}`
+                el['toolPC'] = `${(el.price_change_percentage_24h).toFixed(2)}%`
             }
         })
 
