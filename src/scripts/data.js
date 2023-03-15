@@ -127,6 +127,36 @@ export function bubbleUp(){
 
         console.log(numBelowAvg(data))
 
+        function addSize(num) {
+            if(num < 11){
+                return 20;
+            } else if(num < 100) {
+                return 10;
+            } else {
+                return 0; 
+            }
+        }
+
+        function addFontSize(num) {
+            if(num < 11){
+                return [10, 20, 22];
+            } else if(num < 100) {
+                return [7.5, 17, 19];
+            } else {
+                return [5, 13, 15]; 
+            }
+        }
+
+        function addFontAlign(num) {
+            if(num < 11){
+                return [25, 50, 55];
+            } else if(num < 100) {
+                return [15, 47, 52];
+            } else {
+                return [5, 45, 50]; 
+            }
+        }
+
         function sizeScale(arr) {
             let total = {
                 "small": 0, 
@@ -144,7 +174,7 @@ export function bubbleUp(){
             })
             console.log(total)
             if (total["small"] >= total["big"]) {
-                return 11;
+                return 9;
             } else {
                 return 5; 
             }
@@ -181,15 +211,15 @@ export function bubbleUp(){
         // Size scale for coin/bubbles based on top/worst performing coin
         const size = d3.scaleLinear()
             .domain([0, 50, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
-            .range([sizeScale(data), 55, 60])  // circle will be between 7 and 55 px wide , 80
+            .range([sizeScale(data)+addSize(numCoins.value), 55, 60])  // circle will be between 7 and 55 px wide , 80
         
         const textAlign = d3.scaleLinear()
             .domain([0, 50, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
-            .range([5, 45, 50])  // alignment will be between 1 - 45 additional px , 70
+            .range(addFontAlign(numCoins.value))  // alignment will be between 1 - 45 additional px , 70
 
         const fontSize = d3.scaleLinear()
             .domain([0, 50, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
-            .range([5, 13, 15])  // circle will be between 7 and 55 px wide , 17
+            .range(addFontSize(numCoins.value))  // circle will be between 7 and 55 px wide , 17
 
         // How to stack bubbles if they are up/down
         const y = d3.scaleOrdinal()
@@ -206,20 +236,22 @@ export function bubbleUp(){
                 .style("border", "solid")
                 .style("border-width", "4px")
                 .style("border-radius", "5px")
-                .style("padding", "5px")
             
-            // Three function that change the tooltip when user hover / move / leave a cell
-
+                
         const Sample = d3.select("#toolbox")
             .append("p")
-                .attr("class", "direction")
-                .html("Hover mouse over bubble for more coin information. Click and drag to interact with bubbles.")
-                .style("text-align", "center")
+            .attr("class", "direction")
+            .html("One coin can't win, together they might have a chance." + '<br>' + "This website was created to provide a quick overview of the current crypto market condition using bubbles.  Click bubble for more information and drag to interact with them.")
+            .style("text-align", "center")
+              
+        const mySound = new Audio('./assets/pop2.mp3')
 
+        // Three function that change the tooltip when user hover / move / leave a cell
         const mouseover = function(event, d) {
             Tooltip
                 .style("opacity", 1)
                 d3.selectAll('.direction').remove();
+ 
         }
         const mousemove = function(event, d) {
             Tooltip
@@ -245,6 +277,10 @@ export function bubbleUp(){
             Tooltip
                 .style("opacity", 1)
         }
+
+        const mousedown = function(event, d) {
+            mySound.play()
+        }
         
         // Initialize the circle: all located at the center of the svg area
         const node = svg.append("g")
@@ -259,6 +295,7 @@ export function bubbleUp(){
             .style("fill-opacity", 1)
             .attr("stroke", d => color(d.change))
             .style("stroke-width", 1.5)
+            .on("mousedown", mousedown)
             .on("mouseover", mouseover) // What to do when hovered
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)

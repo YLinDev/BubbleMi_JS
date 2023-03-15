@@ -16,22 +16,29 @@
     <!-- Create a div where the graph will take place -->
 
     <div id="my_dataviz">
-      <div id="main">BubbleMi
+      <br>
+      <div id="main">
+        <image class="bIcon" src="./assets/bubbleicon.png"></image>
+        BubbleMi
         <a href="https://github.com/YLinDev" target="_blank"><image class="icon" src="./assets/github-icon2.png"></image></a>
         <a href="https://www.linkedin.com/in/yong-lin-b7142a40/" target="_blank"><image class="icon" src="./assets/linkedin-icon2.png"></a>
         <label for="numCoins">Top:</label>
         <select name="numCoins" id="numCoins" onchange="reload()">
-          <option value="100">100</option>
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
           <option value="150">150</option>
           <option value="200">200</option>
         </select>
-      </div>
-      <div id="toolbox"> 
-      </div>
+      </div><div id="toolbox"></div>
     </div>
     <div id="credits">
       <p>Created by Yong Lin   |  Powered by</p>
       <a href="https://www.coingecko.com/" target="_blank"><image class="gecko" src="./assets/coingeckocolor.png"></image></a>
+      <p>|  Buy coins at </p>
+        <a href='https://www.binance.us/' target='_blank'><image class='exIcon' src='./assets/bn-logo.png'></image></a>
+        <a style="vertical-align:middle" href='https://www.coinbase.com/' target='_blank'><image class='exIcon' src='./assets/Coinbase-logo.png'></image></a>
+        <a href='https://www.gemini.com/' target='_blank'><image class='exIcon' src='./assets/gemini-hor-dark-full.png'></image></a>
     </div>
     
   </body>

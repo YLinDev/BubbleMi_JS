@@ -4,8 +4,8 @@ $backgroundC: #474a54;
     color: white; 
     font-size: 40px;
     text-align: center;
-    padding: 5px;
-    padding-top: 10px;
+    position: relative;
+    font-weight: bold;
 }
 
 #toolbox {
@@ -23,6 +23,10 @@ $backgroundC: #474a54;
 .icon {
     width: 20px;
     height: 20px;
+}
+
+.bIcon {
+    width: 50px;
 }
 
 label {

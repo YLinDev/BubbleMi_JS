@@ -2,12 +2,21 @@
 
 
 #credits {
+    position: relative;
     display: flex;
     justify-content: center;
     font-size: 10px;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .gecko {
     width: 70px;
     padding: 5px;
+}
+
+.exIcon {
+    width: 70px;
+    padding: 5px;
+    vertical-align: middle;
 }
