@@ -202,7 +202,7 @@ export function bubbleUp(){
         //     fontSize: [5, 15],
         //     yCoor: [50, 200]
         // }
-        
+
         // Color palette for change up/ down
         const color = d3.scaleOrdinal()
             .domain(["down", "up"])//, "crazy"

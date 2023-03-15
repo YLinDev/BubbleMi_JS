@@ -7,13 +7,11 @@ import GetData from "./scripts/getData";
 // })
 const loadSound = new Audio('./assets/bubble-pop-6395.mp3')
 
-
 async function call(){
     await bubbleUp(); 
 }
 
 call();
-loadSound.play();
 
 window.reload = function() {
     d3.selectAll('svg').remove();
