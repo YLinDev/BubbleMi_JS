@@ -1,4 +1,4 @@
-@import "./styles/coininfo.scss";
+@import "./styles/bottom.scss";
 @import "./styles/header.scss";
 
 #my_dataviz {
@@ -6,13 +6,11 @@
     border-radius: 5px;
 }
 
-svg {
-    display:flex;
-    flex-wrap: wrap;
-    background-color: $backgroundC;
-    // background-color:  #b5b7ba;
+// svg {
+//     background-image: url("../assets/MetaPanacea7.jpeg");
+//     background-color: #cccccc;
     
-}
+// }
 
 .node:hover {
     stroke-width: 5px !important;
@@ -28,3 +26,4 @@ text {
     font-weight: 700;
     font-style: italic;
 }
+

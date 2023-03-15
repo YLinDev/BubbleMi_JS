@@ -8,7 +8,7 @@ export function bubbleUp(){
     const svg = d3.select("#my_dataviz")
         .append("svg")
             .attr("id", "chart")
-            .attr("viewBox", "0 0 900 400") //dynamic width & height
+            .attr("viewBox", "0 -15 900 400") //dynamic width & height
             .attr("preserveAspectRatio", "xMidYMid meet") //dynamic width & height
             .style("border-radius", "5px")
 
@@ -109,6 +109,49 @@ export function bubbleUp(){
             }
             return result.price_change_percentage_24h;
         }
+        
+        function numBelowAvg(arr) {
+            let total = 0;
+            arr.forEach((el) => {
+                total += Math.abs(el.price_change_percentage_24h)
+            })
+            let avg = total / numCoins.value 
+            let count = 0; 
+            arr.forEach((el) => {
+                if (el.price_change_percentage_24h < avg) {
+                    count++; 
+                }
+            })
+            return total; 
+        }
+
+        console.log(numBelowAvg(data))
+
+        function sizeScale(arr) {
+            let total = {
+                "small": 0, 
+                "big": 0,
+                "crazy": 0
+            };
+            arr.forEach((el) => {
+                if (Math.abs(el.price_change_percentage_24h) < 50){
+                    total["small"] += 1; 
+                } else if (Math.abs(el.price_change_percentage_24h) > 50 && Math.abs(el.price_change_percentage_24h) < 90){
+                    total["big"] += 1;
+                } else if (Math.abs(el.price_change_percentage_24h) > 80){
+                    total["crazy"] += 1;
+                } 
+            })
+            console.log(total)
+            if (total["small"] >= total["big"]) {
+                return 11;
+            } else {
+                return 5; 
+            }
+        }
+        // let bubbleSize = sizeScale(data)
+
+        console.log(sizeScale(data))
 
         //compare bottom and top and use for size scaling
         function max(){
@@ -123,12 +166,12 @@ export function bubbleUp(){
         console.log(bottom(downs))
         console.log(top(ups))
         
-        const setA = {
-            size: [5, 60],
-            textAlign: [5, 50],
-            fontSize: [5, 15],
-            yCoor: [50, 200]
-        }
+        // const setA = {
+        //     size: [5, 60],
+        //     textAlign: [5, 50],
+        //     fontSize: [5, 15],
+        //     yCoor: [50, 200]
+        // }
         
         // Color palette for change up/ down
         const color = d3.scaleOrdinal()
@@ -137,16 +180,16 @@ export function bubbleUp(){
         
         // Size scale for coin/bubbles based on top/worst performing coin
         const size = d3.scaleLinear()
-            .domain([0, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
-            .range([5, 60])  // circle will be between 7 and 55 px wide , 80
+            .domain([0, 50, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
+            .range([sizeScale(data), 55, 60])  // circle will be between 7 and 55 px wide , 80
         
         const textAlign = d3.scaleLinear()
-            .domain([0, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
-            .range([5, 50])  // alignment will be between 1 - 45 additional px , 70
+            .domain([0, 50, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
+            .range([5, 45, 50])  // alignment will be between 1 - 45 additional px , 70
 
         const fontSize = d3.scaleLinear()
-            .domain([0, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
-            .range([5, 15])  // circle will be between 7 and 55 px wide , 17
+            .domain([0, 50, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
+            .range([5, 13, 15])  // circle will be between 7 and 55 px wide , 17
 
         // How to stack bubbles if they are up/down
         const y = d3.scaleOrdinal()
@@ -169,13 +212,14 @@ export function bubbleUp(){
 
         const Sample = d3.select("#toolbox")
             .append("p")
+                .attr("class", "direction")
                 .html("Hover mouse over bubble for more coin information. Click and drag to interact with bubbles.")
                 .style("text-align", "center")
 
         const mouseover = function(event, d) {
             Tooltip
                 .style("opacity", 1)
-                d3.selectAll('p').remove();
+                d3.selectAll('.direction').remove();
         }
         const mousemove = function(event, d) {
             Tooltip
