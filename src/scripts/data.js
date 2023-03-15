@@ -129,9 +129,9 @@ export function bubbleUp(){
 
         function addSize(num) {
             if(num < 11){
-                return 20;
+                return 30;
             } else if(num < 100) {
-                return 10;
+                return 20;
             } else {
                 return 0; 
             }
