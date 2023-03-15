@@ -161,8 +161,9 @@ export function bubbleUp(){
                 .attr("class", "tooltip")
                 .style("border-color", "white")
                 .style("border", "solid")
-                .style("border-width", "2px")
+                .style("border-width", "4px")
                 .style("border-radius", "5px")
+                .style("padding", "5px")
             
             // Three function that change the tooltip when user hover / move / leave a cell
 
@@ -179,17 +180,18 @@ export function bubbleUp(){
         const mousemove = function(event, d) {
             Tooltip
                 .html(
-                    `Name: ${d.name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    Symbol: ${d.symbol.toUpperCase()} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    Current Price: ${formatter.format(d.current_price)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    24Hr Change: ${d.toolPC} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    High 24Hr: ${formatter.format(d['high_24h'])} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    `&nbsp;&nbsp;&nbsp; Name: ${d.name} &nbsp;&nbsp;&nbsp;
+                    |&nbsp;&nbsp;&nbsp; Current Price: ${formatter.format(d.current_price)} &nbsp;&nbsp;&nbsp;`+
+                    '<br>' +
+                    `&nbsp;&nbsp;&nbsp;Symbol: ${d.symbol.toUpperCase()} &nbsp;&nbsp;&nbsp; 
+                    |&nbsp;&nbsp;&nbsp;24Hr Change: ${d.toolPC} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    High 24Hr: ${formatter.format(d['high_24h'])} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                     Low 24Hr: ${formatter.format(d['low_24h'])}`+ 
                     '<br>' + 
-                    `Rank: ${d.market_cap_rank}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
-                    `Market Cap: ${d.toolMC}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
-                    `24H Volume: ${d.toolTV}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
-                    `ATH: ${formatter.format(d.ath)} on ${d.ath_date.slice(0,10)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` +
+                    `Rank: ${d.market_cap_rank}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;` +
+                    `Market Cap: ${d.toolMC}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;` +
+                    `24H Volume: ${d.toolTV}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;` +
+                    `ATH: ${formatter.format(d.ath)} on ${d.ath_date.slice(0,10)}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;` +
                     `ATL: ${formatter.format(d.atl)} on ${d.atl_date.slice(0,10)}`)
                 .style("left", (event.x/2+20) + "px")
                 .style("top", (event.y/2-30) + "px")
