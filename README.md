@@ -8,7 +8,7 @@ BubbleMi is a data visualization website of top cryptos using API to fetch real 
 
 In BubbleMi, users will be able to:
 
-* Select the number of bubbles/coins to chart
+* Select the number of bubbles/coins to generate on the chart
 * Click on the bubble to show additional information on each coin
 * Click and drag to move bubbles as they wish
 * Click on bubbles to play sound effect
