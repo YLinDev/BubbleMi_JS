@@ -12,7 +12,7 @@ export function bubbleUp(){
             .attr("preserveAspectRatio", "xMidYMid meet") //dynamic width & height
             .style("border-radius", "5px")
 
-    console.log(numCoins.value)
+    // console.log(numCoins.value)
         
         // Read data
         d3.json(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${parseInt(numCoins.value)}&page=1&sparkline=false`).then( function(data) {
@@ -41,8 +41,6 @@ export function bubbleUp(){
                 el.price_change_percentage_24h = 0
             }
         })
-
-
 
         data.map((el) => { //convert Market Cap to strings for coininfo
             if (el.market_cap > 1000000000){
@@ -73,16 +71,16 @@ export function bubbleUp(){
             currency: 'USD',
         })
 
-        console.log(data)
+        // console.log(data)
         
         // data.forEach(el => console.log(el.price_change_percentage_24h))
 
         let downs = data.filter((el) => el.price_change_percentage_24h < 0) // find coins that are down
         let ups = data.filter((el) => el.price_change_percentage_24h > 0) // find coins that are up
         let crazys = data.filter((el) => el.change === 'crazy') // find coins that are up or down by over 100%
-        console.log(`${downs.length} downs `)
-        console.log(`${ups.length} ups `)
-        console.log(crazys)
+        // console.log(`${downs.length} downs `)
+        // console.log(`${ups.length} ups `)
+        // console.log(crazys)
 
 
         
@@ -133,7 +131,7 @@ export function bubbleUp(){
             return total; 
         }
 
-        console.log(numBelowAvg(data))
+        // console.log(numBelowAvg(data))
 
         function addSize(num) {
             if(num < 11){
@@ -195,7 +193,7 @@ export function bubbleUp(){
         }
         // let bubbleSize = sizeScale(data)
 
-        console.log(sizeScale(data))
+        // console.log(sizeScale(data))
 
         //compare bottom and top and use for size scaling
         function max(){
@@ -206,9 +204,9 @@ export function bubbleUp(){
             }
         }
         
-        console.log(max())
-        console.log(bottom(downs))
-        console.log(top(ups))
+        // console.log(max())
+        // console.log(bottom(downs))
+        // console.log(top(ups))
         
         // const setA = {
         //     size: [5, 60],

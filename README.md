@@ -1,3 +1,5 @@
+https://ylindev.github.io/BubbleMi_JS/
+
 # BubbleMi
 
 ![Screenshot](./assets/screenshot2.png)
@@ -16,7 +18,7 @@ In BubbleMi, users will be able to:
 * Click on bubbles to play sound effect
 * Links to cryptocurrency exchanges to buy crypto
 
-## Wireframe
+## Wireframe    
 
 ![Wireframe](./assets/wireframe1.png)
 
@@ -32,6 +34,9 @@ In BubbleMi, users will be able to:
 * D3's Circular Packing libraries to generate bubbles and data presentation: https://d3-graph-gallery.com/circularpacking.html
 * Webpack to bundle JavaScript code
 * npm watch and build
+
+![code1](./assets/code1.png)
+![code2](./assets/code2.png)
 
 ## Implementation Timeline: 
 
