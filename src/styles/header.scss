@@ -1,19 +1,27 @@
+@import "./reset.scss";
 $backgroundC: #474a54;
 
 #main {
     color: black; 
     font-size: 40px;
     text-align: center;
-    position: relative;
     font-weight: bold;
 }
 
-#toolbox {
-    background-image: linear-gradient(#474a54, white 1px, #474a54);
-    color: black; 
-    text-align: center;
-    // border-radius: 5px;
+.bIcon, .icon, #numCoins {
+    display: inline-block;
 }
+
+#toolbox {
+    background-image: linear-gradient(#474a54, black, #474a54);
+    color: white; 
+    text-align: center;
+    box-shadow: 20px 20px 50px 50px white;
+    border-radius: 5px;
+}
+
+// #toolbox:hover {
+// }
 
 #tooltip {
     display: flex;

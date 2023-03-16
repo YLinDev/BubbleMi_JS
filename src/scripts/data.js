@@ -8,7 +8,7 @@ export function bubbleUp(){
     const svg = d3.select("#my_dataviz")
         .append("svg")
             .attr("id", "chart")
-            .attr("viewBox", "0 -15 900 400") //dynamic width & height
+            .attr("viewBox", "0 0 900 400") //dynamic width & height
             .attr("preserveAspectRatio", "xMidYMid meet") //dynamic width & height
             .style("border-radius", "5px")
 
@@ -141,9 +141,9 @@ export function bubbleUp(){
             } else if(num < 100) {
                 return [25, 40, 50];
             } else if (num < 150) {
-                return [10, 35, 40]
+                return [10, 30, 40]
             }else {
-                return [5, 25, 60]; 
+                return [7, 30, 40]; 
             }
         }
 
@@ -152,8 +152,10 @@ export function bubbleUp(){
                 return [13, 25, 30];
             } else if(num < 100) {
                 return [7.5, 13, 15];
+            } else if (num < 150) {
+                return [5, 10, 13]; 
             } else {
-                return [2, 10, 13]; 
+                return [5, 10, 13]; 
             }
         }
 
@@ -163,10 +165,9 @@ export function bubbleUp(){
             } else if(num < 100) {
                 return [20, 30, 35];
             } else if (num < 150){
-                // return [2, 17, 50]; 
-                return [10, 25, 30]
+                return [7, 25, 30]
             } else {
-                return [2, 17, 50]; 
+                return [2, 17, 28]; 
             }
         }
 
@@ -246,8 +247,9 @@ export function bubbleUp(){
                 .data(data)
                 .style("opacity", 0)
                 .attr("class", "tooltip")
-                // .style("border", "solid")
-                // .style("border-width", "4px")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px")
                 // .style("background-image", `linear-gradient(${d => color(d.change)}, #474a54)`)
                 // .attr("background-color", d => color(d.change))
                 // .style("border-color", d => color(d.change))
