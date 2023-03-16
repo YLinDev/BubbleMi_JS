@@ -2,15 +2,22 @@
 @import "./styles/header.scss";
 
 #my_dataviz {
-    background-color: $backgroundC;
+    background-color: #454545;
     border-radius: 5px;
-        // background-image: url("../assets/background2.webp");
-        // background-color: #cccccc;
+    // background-image: linear-gradient(red, gold);
+    // background-image: url("../assets/grid.jpeg");
+    // background-color: #cccccc;
+    // background-size: cover;
 }
 
-// svg {
-    
-// }
+
+svg {
+    background-size: 40px 40px;
+    background-color: #454545;
+    background-image:
+      linear-gradient(to right, grey 1px, transparent 1px),
+      linear-gradient(to bottom, grey 1px, transparent 1px);
+}
 
 .node:hover {
     stroke-width: 5px !important;

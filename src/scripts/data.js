@@ -25,6 +25,12 @@ export function bubbleUp(){
         // add change properties to each coin whether they are up or down based on price_change_percentage_24h
         data.map((el) => {
             if (Math.abs(el.price_change_percentage_24h) > 100) {
+                el.price_change_percentage_24h = 0
+            }
+        })
+
+        data.map((el) => {
+            if (Math.abs(el.price_change_percentage_24h) > 100) {
                 el['change'] = 'crazy'
             } else if (el.price_change_percentage_24h > 0 && el.price_change_percentage_24h < 100) {
                 el['change'] = 'up'
@@ -35,6 +41,8 @@ export function bubbleUp(){
                 el.price_change_percentage_24h = 0
             }
         })
+
+
 
         data.map((el) => { //convert Market Cap to strings for coininfo
             if (el.market_cap > 1000000000){
@@ -132,7 +140,9 @@ export function bubbleUp(){
                 return [30, 60, 65];
             } else if(num < 100) {
                 return [25, 40, 50];
-            } else {
+            } else if (num < 150) {
+                return [10, 35, 40]
+            }else {
                 return [5, 25, 60]; 
             }
         }
@@ -152,6 +162,9 @@ export function bubbleUp(){
                 return [25, 50, 55];
             } else if(num < 100) {
                 return [20, 30, 35];
+            } else if (num < 150){
+                // return [2, 17, 50]; 
+                return [10, 25, 30]
             } else {
                 return [2, 17, 50]; 
             }
@@ -230,12 +243,15 @@ export function bubbleUp(){
         // create a tooltip
         const Tooltip = d3.select("#toolbox")
             .append("ul")
+                .data(data)
                 .style("opacity", 0)
                 .attr("class", "tooltip")
-                .style("border-color", "white")
-                .style("border", "solid")
-                .style("border-width", "4px")
-                .style("border-radius", "5px")
+                // .style("border", "solid")
+                // .style("border-width", "4px")
+                // .style("background-image", `linear-gradient(${d => color(d.change)}, #474a54)`)
+                // .attr("background-color", d => color(d.change))
+                // .style("border-color", d => color(d.change))
+
             
                 
         const Sample = d3.select("#toolbox")
@@ -271,11 +287,12 @@ export function bubbleUp(){
                     `ATL: ${formatter.format(d.atl)} on ${d.atl_date.slice(0,10)}`)
                 .style("left", (event.x/2+20) + "px")
                 .style("top", (event.y/2-30) + "px")
-                // .style("background-color", d => color(d.change))
+                // .attr("background-color", d => color(d.change))
         }
         const mouseleave = function(event, d) {
             Tooltip
-                .style("opacity", 1)
+                .style("opacity", 0)
+                // .style("background-color", "black")
         }
 
         const mousedown = function(event, d) {

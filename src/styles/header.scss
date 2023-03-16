@@ -1,7 +1,7 @@
 $backgroundC: #474a54;
 
 #main {
-    color: white; 
+    color: black; 
     font-size: 40px;
     text-align: center;
     position: relative;
@@ -9,9 +9,10 @@ $backgroundC: #474a54;
 }
 
 #toolbox {
-    color: white; 
+    background-image: linear-gradient(#474a54, white 1px, #474a54);
+    color: black; 
     text-align: center;
-    bottom: white;
+    // border-radius: 5px;
 }
 
 #tooltip {
