@@ -129,21 +129,21 @@ export function bubbleUp(){
 
         function addSize(num) {
             if(num < 11){
-                return 30;
+                return [30, 60, 65];
             } else if(num < 100) {
-                return 20;
+                return [25, 40, 50];
             } else {
-                return 0; 
+                return [5, 25, 60]; 
             }
         }
 
         function addFontSize(num) {
             if(num < 11){
-                return [10, 20, 22];
+                return [13, 25, 30];
             } else if(num < 100) {
-                return [7.5, 17, 19];
+                return [7.5, 13, 15];
             } else {
-                return [5, 13, 15]; 
+                return [2, 10, 13]; 
             }
         }
 
@@ -151,9 +151,9 @@ export function bubbleUp(){
             if(num < 11){
                 return [25, 50, 55];
             } else if(num < 100) {
-                return [15, 47, 52];
+                return [20, 30, 35];
             } else {
-                return [5, 45, 50]; 
+                return [2, 17, 50]; 
             }
         }
 
@@ -210,15 +210,15 @@ export function bubbleUp(){
         
         // Size scale for coin/bubbles based on top/worst performing coin
         const size = d3.scaleLinear()
-            .domain([0, 50, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
-            .range([sizeScale(data)+addSize(numCoins.value), 55, 60])  // circle will be between 7 and 55 px wide , 80
+            .domain([0, max()*8/10, max()]) //use max of up/down to scale bubble size , topCrazys(crazys)
+            .range(addSize(numCoins.value))  // circle will be between 7 and 55 px wide , 80
         
         const textAlign = d3.scaleLinear()
-            .domain([0, 50, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
+            .domain([0, max()*8/10, max()]) //use max of up/down to textAlignment px , topCrazys(crazys)
             .range(addFontAlign(numCoins.value))  // alignment will be between 1 - 45 additional px , 70
 
         const fontSize = d3.scaleLinear()
-            .domain([0, 50, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
+            .domain([0, max()*8/10, max()]) //added 10 to make it to appear within desire location , topCrazys(crazys)
             .range(addFontSize(numCoins.value))  // circle will be between 7 and 55 px wide , 17
 
         // How to stack bubbles if they are up/down
