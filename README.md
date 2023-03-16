@@ -1,5 +1,7 @@
 # BubbleMi
 
+![Screenshot](./assets/screenshot2.png)
+
 ## Background
 
 BubbleMi is a data visualization website of top cryptos using API to fetch real time data and presenting the information using a bubble chart.  The bubbles will have varying sizes depending on percentage up/down in the past 24Hr.  The colors of the bubble will be green if the coin is up and red if the coin is down.  Clicking on each bubble will present the user with additional information about each coin.  User is free to interact with bubbles by clicking and dragging them around.  There is an invisible force within the bubbles to slowly move to where they belong.   
