@@ -146,9 +146,9 @@ export function bubbleUp(){
             } else if(num < 100) {
                 return [25, 40, 50];
             } else if (num < 150) {
-                return [10, 30, 40]
+                return [15, 30, 40]
             }else {
-                return [7, 30, 40]; 
+                return [15, 30, 40]; 
             }
         }
 
