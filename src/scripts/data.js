@@ -82,6 +82,13 @@ export function bubbleUp(){
         // console.log(`${ups.length} ups `)
         // console.log(crazys)
 
+        if (chartType.value === "green") {
+            data = ups
+        };
+        if (chartType.value === 'red') {
+            data = downs
+        };
+
 
         
         //find the worst performing coin to use for size scaling
@@ -257,7 +264,7 @@ export function bubbleUp(){
         const Sample = d3.select("#toolbox")
             .append("p")
             .attr("class", "direction")
-            .html("One coin can't win, together they might have a chance." + '<br>' + "This website was created to provide a quick overview of the current crypto market condition using bubbles.  Click bubble for more information and drag to interact with them.")
+            .html("One coin can't win, together they might have a chance.")
             .style("text-align", "center")
               
         const mySound = new Audio('./assets/pop2.mp3')

@@ -4,10 +4,24 @@ import {bubbleUp} from "./scripts/data";
 const loadSound = new Audio('./assets/bubble-pop-6395.mp3')
 bubbleUp(); 
 
-// async function call(){
-// }
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("myBtn");
+const span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
-// call();
+btn.onclick(); 
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 window.reload = function() {
     d3.selectAll('svg').remove();

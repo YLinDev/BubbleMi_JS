@@ -23,19 +23,42 @@
     <div id="my_dataviz">
       <br>
       <div id="main">
-        <image class="bIcon" src="./assets/bubbleicon.png"></image>
-        BubbleMi
-        <a href="https://github.com/YLinDev" target="_blank"><image class="icon" src="./assets/github-icon2.png"></image></a>
-        <a href="https://www.linkedin.com/in/yong-lin-b7142a40/" target="_blank"><image class="icon" src="./assets/linkedin-icon2.png"></a>
-        <label for="numCoins">Top:</label>
-        <select name="numCoins" id="numCoins" onchange="reload()">
-          <option value="10">10</option>
-          <option value="50" selected>50</option>
-          <option value="100">100</option>
-          <option value="150">150</option>
-          <option value="200">200</option>
-        </select>
-      </div><div id="toolbox"></div>
+        <div>
+          <image class="bIcon" src="./assets/bubbleicon.png"></image>
+          BubbleMi
+          <a href="https://github.com/YLinDev" target="_blank"><image class="icon" src="./assets/github-icon2.png"></image></a>
+          <a href="https://www.linkedin.com/in/yong-lin-b7142a40/" target="_blank"><image class="icon" src="./assets/linkedin-icon2.png"></a>
+        </div>
+        <div id="filters">
+          <label class="filters" for="numCoins">Filter By:</label>
+          <select class="custom-select" style="width:150px; height:25px" name="numCoins" id="numCoins" onchange="reload()">
+            <option value="10">Top 10 Coins</option>
+            <option value="50" selected>Top 50 Coins</option>
+            <option value="100">Top 100 Coins</option>
+            <option value="150">Top 150 Coins</option>
+            <option value="200">Top 200 Coins</option>
+          </select>
+          <label class="filters" for="chartType">Coins:</label>
+          <select class="custom-select" style="width:150px; height:25px" name="chartType" id="chartType" onchange="reload()">
+            <option value="all" selected>All</option>
+            <option value="green"> <span style="color: green"> Green </span> (24 Hr Up)</option>
+            <option value="red"> <span style="color: red"> Red </span> (24 Hr Down)</option>
+          </select>
+        </div>
+        <button id="myBtn">Help</button>
+      </div>
+      <div id="toolbox"></div>
+    </div>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="close-div">
+          <span class="close">&times;</span>
+        </div>
+        <h2 class="modal-title"><image class="bIcon" src="./assets/bubbleicon.png"></image> Welcome to BubbleMi!</h2>
+        <p class="modal-p">BubbleMi is a crypto data visualization site displaying coin data as user interactive bubbles. This was made possible with Coin Gecko's API and 3 sets of D3 libaries. Options at the top allow for filtering by top coins by market capitalization and coins that are either in the <span style="color: green"> GREEN </span> (up 24hr) OR in the <span style="color: red"> RED </span> (down 24hr).</p>
+      </div>
     </div>
     <div id="credits">
       <p>Created by Yong Lin   |  Powered by</p>
