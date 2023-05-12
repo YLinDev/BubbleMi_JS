@@ -15,6 +15,7 @@ In BubbleMi, users will be able to:
 * Select the number of bubbles/coins to generate on the chart
 * Click on the bubble to show additional information on each coin
 * Click and drag to move bubbles as they wish
+* Click to filter coins that are UP or DOWN
 * Click on bubbles to play sound effect
 * Links to cryptocurrency exchanges to buy crypto
 
