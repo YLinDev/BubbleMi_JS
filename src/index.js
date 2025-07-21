@@ -1,4 +1,4 @@
-import {bubbleUp} from "./scripts/data";
+import {bubbleUp} from "./scripts/data.js";
 
 
 const loadSound = new Audio('./assets/bubble-pop-6395.mp3')
